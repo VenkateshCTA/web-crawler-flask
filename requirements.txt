@@ -1,0 +1,6 @@
+flask
+pymongo
+gunicorn==19.6.0
+nose
+parsel==1.5.1
+requests

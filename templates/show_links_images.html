@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body style="padding: 20px">
+  <div class="container panel panel-default">
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-4">
+          <h2><strong>Crawler Results</strong></h2>
+      </div>
+    </div>
+    <br/>
+    <div class="column">
+      <div class="col-lg-4 col-lg-offset-4">
+          <h3>Links which are crawled</h3>
+        <div class="panel panel-danger">
+          <div class="panel-body">
+          {% for item in items %}
+            <p> {{ item }} </p>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="col-lg-4 col-lg-offset-4">
+          <h3>Images which are crawled</h3>
+        <div class="panel panel-danger">
+          <div class="panel-body">
+            {% for img_path in imgs %}
+              {% if img_path %}
+                    <img src="{{img_path|safe}}" alt="Images"/>
+              {% else %}
+                    <p> No images to display </p>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
