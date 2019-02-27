@@ -15,6 +15,9 @@ def home_page():
     return render_template('index.html')
 
 # Results page API
+# URLS to check for
+# https://gocardless.com
+# https://gale.agency/
 @app.route('/results', methods=['POST'])
 def links():
     """
