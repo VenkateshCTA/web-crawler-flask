@@ -29,27 +29,24 @@ def links():
     links = []
     all_images = {}
     imgs = []
-    if depth == 1:
-        res = [k for k in href_links if url in k]
-        links = set(res)
 
-    elif depth == 2:
-        image_links = selector.xpath('//img/@src').getall()
-        links = url.split()
-        imgs = set(image_links)
+    for i in range(1, depth+1):
+        if depth == 1:
+            res = [k for k in href_links if url in k]
+            links = set(res)
 
-    elif depth == 3:
-        res = [k for k in href_links if url in k]
-        links = set(res)
-        for link in links:
-            try:
-                response = requests.get(link)
-                if response.status_code == 200:
-                    image_links = selector.xpath('//img/@src').getall()
-                    all_images[link] = image_links
-                    imgs = set(all_images[link])
-            except Exception as exp:
-                print('Error navigating to link : ', link)
+        else:
+            res = [k for k in href_links if url in k]
+            links = set(res)
+            for link in links:
+                try:
+                    response = requests.get(link)
+                    if response.status_code == 200:
+                        image_links = selector.xpath('//img/@src').getall()
+                        all_images[link] = image_links
+                        imgs = set(all_images[link])
+                except Exception as exp:
+                    print('Error navigating to link : ', link)
 
     return render_template('show_links_images.html', items=links, imgs=imgs)
 
